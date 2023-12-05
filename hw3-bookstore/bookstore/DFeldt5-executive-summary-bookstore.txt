@@ -1,0 +1,29 @@
+Assignment name: Bookstore
+
+Name: Dustin Feldt
+UWNetID: DFeldt5
+
+
+Assignment Overview:
+Bookstore is a set of three object classes that have to slot seamlessly into a larger storefront application.  The Item class defines the specific things for sale in the store, and is similar to the previous two assignments in its general construction.  ItemOrder is the simplest class and serves as almost a bridge between Item and Cart.  Cart is also seemingly simple in its format, but has buried complexity in its pricing and toString methods.  Cart also presents a challenge in determining a data structure for the ItemOrders that works well with the given functions.
+The second part of the assignment is implementing JUnit tests for the three classes.  The tests ensure that the code works as intended and covers all possible errors and bugs.  They also help develop code by imagining those errors before they occur.
+The third part is reading, understanding, and debugging code written by others.  A mystery problem in the existing Bookstore framework has to be identified and fixed, which requires being able to follow the existing code through multiple classes and visualizing how it functions at each step.
+
+Technical Impression:
+Since Item shares so many similarities with Clock and Shape, most of it came together quickly.  There were challenges presented by learning how to work with BigDecimal objects and StringBuilders, but some API reviewing and experimentation led to quick solutions.  Writing compareTo with multiple different object types was interesting, since Strings compare somewhat differently than ints and BigDecimals (which have their own potential pitfalls while comparing).  
+ItemOrder was even more straightforward and flowed directly from Item.  The main challenge, determining the format for toString, was more of a design problem. How best to clearly illustrate the quantity alongside the Item String, which can be fairly complex on its own?  I decided to mirror the layout of the store GUI, with quantity to the left of the item.  That also provides a visual break between numbers and letters as opposed to putting the quantity to the right, where it would follow three other numbers.
+Cart was definitely the trickiest of the three classes.  I went through a few different data structures trying to find the best fit for what the class required.  Ultimately I settled on TreeMap because it would be easiest to update orders and get quantities, and has the flexibility to sort in different ways.  Splitting ItemOrder objects into keys and values was a little bit clunky, especially since the simplest way to write toString was to then reassemble them and call the ItemOrder toString method.  Using a map also gave me the opportunity to dip into lambda expressions, which I hadn't seen before.  While I knew I could iterate through a keySet, I couldn't resist attempting the direct forEach method in the TreeMap API.  Composing calculatePrice was a good exercise in code efficiency, as I initially wrote it as long as possible to make sure I covered all the logical permutations.  After that I was able to pare it down, eliminate redundancy, and split some of the work into a helper method to make it easier to read.
+Writing the tests was a lot smoother than I feared it would be, thanks to how direct the process is (and the examples given in class).  I look forward to getting more comfortable with unit testing, since I feel like there's a lot more potential for streamlining the process.  I eliminated a lot of tests that I felt were redundant, but it still seems like a wall of methods that could be condensed somehow.
+I bounced off debugging the login frame a handful of times before the logic pathways clicked and I could understand how the GUI interacted with the credential loader.  After some experiments in the registration screen, I thought I knew where the bug was and went through that code until I found the contradiction.
+
+Unresolved problems in my submission:
+There are quite a few PMD and Checkstyle flags in the test classes, as I wasn't sure whether or not they were meant to be resolved. 
+
+Citations and Collaborations:
+None
+
+Questions:
+None
+
+Extra Credit:
+I sorted the items alphabetically but ran out of time to sort them by price.
